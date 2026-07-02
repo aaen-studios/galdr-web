@@ -7,11 +7,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://galdr.app"),
-  title: "galdr — media incantations",
+  title: "galdr - media incantations",
   description:
     "A desktop GUI wrapper around FFmpeg for converting and manipulating video, audio, and image files. Terminal aesthetic. Runic theme.",
   openGraph: {
-    title: "galdr — media incantations",
+    title: "galdr - media incantations",
     description:
       "A desktop GUI wrapper around FFmpeg. Terminal aesthetic. Runic theme.",
     url: "https://galdr.app",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "galdr — media incantations",
+    title: "galdr - media incantations",
     description:
       "A desktop GUI wrapper around FFmpeg. Terminal aesthetic. Runic theme.",
   },
