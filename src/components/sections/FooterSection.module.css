@@ -1,0 +1,67 @@
+.footer {
+  padding: 48px 24px 64px;
+}
+
+.inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.runicLine {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--fg-faint);
+  letter-spacing: 0.25em;
+  user-select: none;
+  margin-bottom: 8px;
+}
+
+.text {
+  font-size: 0.875rem;
+  color: var(--fg-dim);
+  margin: 0;
+}
+
+.link {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-dim);
+  text-decoration: none;
+  transition: color var(--ease-out) 0.25s;
+  margin: 4px 0;
+}
+
+.link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.copy {
+  font-size: 0.75rem;
+  color: var(--fg-faint);
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 32px 16px 48px;
+  }
+
+  .runicLine {
+    font-size: 0.6rem;
+  }
+}

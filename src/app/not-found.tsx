@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -8,78 +7,98 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div
+    <main
       style={{
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "64px 16px",
+        padding: "24px",
         textAlign: "center",
+        background: "var(--bg)",
+        color: "var(--fg)",
+        fontFamily: "var(--font-body), Georgia, serif",
       }}
     >
       <p
+        aria-hidden="true"
         style={{
+          fontFamily: "var(--font-mono), monospace",
+          fontSize: "0.75rem",
+          marginBottom: "24px",
           color: "var(--fg-faint)",
-          fontSize: "12px",
-          marginBottom: "32px",
           letterSpacing: "0.3em",
         }}
-        aria-hidden="true"
       >
         ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ ᛃ ᛇ ᛈ ᛉ ᛊ ᛏ ᛒ ᛖ ᛗ ᛚ ᛝ ᛟ ᛞ
       </p>
+
+      <div style={{ marginBottom: "16px" }}>
+        <span
+          aria-hidden="true"
+          style={{
+            fontFamily: "var(--font-mono), monospace",
+            fontSize: "3rem",
+            color: "var(--accent-dim)",
+          }}
+        >
+          ᚠ
+        </span>
+      </div>
+
       <h1
         style={{
-          fontSize: "4rem",
+          fontFamily: "var(--font-heading), Georgia, serif",
+          fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
+          fontWeight: 600,
+          letterSpacing: "0.12em",
           textTransform: "uppercase",
-          letterSpacing: "0.15em",
-          marginBottom: "24px",
+          marginBottom: "8px",
+          color: "var(--fg)",
         }}
       >
-        ᚠ 404
+        404 — The incantation failed
       </h1>
+
       <p
         style={{
-          fontSize: "14px",
+          fontSize: "0.9375rem",
           color: "var(--fg-dim)",
-          marginBottom: "48px",
+          marginBottom: "32px",
           maxWidth: "480px",
           lineHeight: 1.6,
         }}
       >
-        The incantation failed — this page does not exist.
+        This page does not exist. The grimoire holds no record of this
+        incantation.
       </p>
-      <Link
+
+      <a
         href="/"
         style={{
           display: "inline-flex",
           alignItems: "center",
-          justifyContent: "center",
-          background: "var(--fg)",
-          color: "var(--bg)",
-          border: "1px solid var(--fg)",
-          padding: "12px 24px",
-          fontSize: "14px",
+          gap: "8px",
+          padding: "10px 20px",
+          border: "1px solid var(--accent)",
+          background: "transparent",
+          color: "var(--accent)",
+          fontFamily: "var(--font-heading), Georgia, serif",
+          fontSize: "0.875rem",
+          fontWeight: 600,
+          letterSpacing: "0.12em",
           textTransform: "uppercase",
-          letterSpacing: "0.1em",
           textDecoration: "none",
-          minHeight: "44px",
-          minWidth: "44px",
+          cursor: "pointer",
+          transition: "background 0.25s, color 0.25s",
         }}
       >
-        ᛏ RETURN HOME
-      </Link>
-      <p
-        style={{
-          marginTop: "64px",
-          fontSize: "11px",
-          color: "var(--fg-faint)",
-        }}
-      >
-        &copy; 2026 Ellio. All rights reserved.
-      </p>
-    </div>
+        <span aria-hidden="true" style={{ fontFamily: "var(--font-mono), monospace", fontSize: "0.8em" }}>
+          ᚷ
+        </span>
+        return to the grimoire
+      </a>
+    </main>
   );
 }

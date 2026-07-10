@@ -1,0 +1,46 @@
+.intro {
+  font-size: 0.9375rem;
+  margin-bottom: 24px;
+  color: var(--fg-dim);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.feature {
+  border: var(--border);
+  padding: 16px;
+  background: var(--bg-surface);
+}
+
+.featureRune {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  color: var(--accent-dim);
+  margin-bottom: 6px;
+}
+
+.featureTitle {
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  color: var(--fg);
+}
+
+.featureDesc {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--fg-dim);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

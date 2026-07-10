@@ -1,0 +1,26 @@
+/* Fixed full-screen background layer. z-index: -1 keeps it above the
+   solid body background but below all normal-flow content, so it never
+   covers text or the ember particles. */
+
+.layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* Full-page mood tint — a flat wash of the current scroll color, very
+   low opacity, sits behind the more focused glow. */
+.tint {
+  position: absolute;
+  inset: 0;
+}
+
+/* The traveling radial glow — brighter, smaller footprint. */
+.glow {
+  position: absolute;
+  inset: 0;
+  /* Soften any banding in the radial gradient on wide gamut screens. */
+  filter: blur(0.5px);
+}

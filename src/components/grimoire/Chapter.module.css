@@ -1,0 +1,58 @@
+.chapter {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.major {
+  padding: 64px 24px;
+}
+
+.chapterLabel {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-dim);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.content {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--fg);
+}
+
+.content p {
+  margin-bottom: 1em;
+}
+
+.content p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .chapter {
+    padding: 32px 16px;
+  }
+
+  .major {
+    padding: 40px 16px;
+  }
+
+  .heading {
+    margin-bottom: 16px;
+  }
+}

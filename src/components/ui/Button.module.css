@@ -1,0 +1,32 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--ease-out) 0.25s, color var(--ease-out) 0.25s;
+}
+
+.button:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.rune {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+.label {
+  display: inline-block;
+}

@@ -1,0 +1,46 @@
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 48px 0;
+  user-select: none;
+}
+
+.line {
+  flex: 1;
+  height: 0;
+  border-top: 1px solid var(--fg-faint);
+}
+
+.runes {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fg-faint);
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.chapter .runes {
+  font-size: 0.875rem;
+  color: var(--accent-dim);
+  letter-spacing: 0.2em;
+}
+
+.chapter .line {
+  border-color: var(--accent-dim);
+}
+
+@media (max-width: 768px) {
+  .divider {
+    margin: 32px 0;
+  }
+
+  .runes {
+    font-size: 0.625rem;
+  }
+
+  .chapter .runes {
+    font-size: 0.75rem;
+  }
+}

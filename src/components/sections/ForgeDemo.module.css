@@ -1,0 +1,121 @@
+.demo {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  background: var(--bg-surface);
+  border: var(--border);
+  margin: 24px 0;
+  overflow: hidden;
+}
+
+/* ── Title bar ── */
+.titleBar {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  background: var(--bg-card);
+  border-bottom: var(--border);
+}
+
+.titleRune {
+  color: var(--accent-dim);
+  margin-right: 8px;
+  font-size: 0.7rem;
+}
+
+.titleText {
+  flex: 1;
+  color: var(--fg-dim);
+  font-size: 0.7rem;
+}
+
+.titleButtons {
+  color: var(--fg-faint);
+  font-size: 0.65rem;
+}
+
+/* ── Timeline tracks ── */
+.timeline {
+  padding: 8px 12px;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  height: 28px;
+}
+
+.trackLabel {
+  width: 48px;
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  color: var(--fg-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.trackBar {
+  flex: 1;
+  height: 18px;
+  background: var(--bg);
+  border: 1px solid var(--fg-faint);
+  position: relative;
+  overflow: hidden;
+}
+
+.trackClip {
+  position: absolute;
+  top: 1px;
+  height: calc(100% - 2px);
+  background: var(--accent-dim);
+  opacity: 0.5;
+  border-radius: 0;
+}
+
+/* ── Time ruler ── */
+.ruler {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 12px 4px 68px;
+  border-top: var(--border);
+  border-bottom: var(--border);
+  font-size: 0.6rem;
+  color: var(--fg-faint);
+}
+
+/* ── Status bar ── */
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--bg-card);
+}
+
+.statusRune {
+  color: var(--accent-dim);
+  font-size: 0.7rem;
+}
+
+.statusText {
+  color: var(--fg-dim);
+  font-size: 0.65rem;
+  flex-shrink: 0;
+}
+
+.statusBar {
+  flex: 1;
+  font-size: 0.65rem;
+  color: var(--accent-dim);
+  letter-spacing: 0.05em;
+}
+
+.statusPercent {
+  color: var(--fg-dim);
+  font-size: 0.65rem;
+  flex-shrink: 0;
+  min-width: 28px;
+  text-align: right;
+}

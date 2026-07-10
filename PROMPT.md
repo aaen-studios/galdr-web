@@ -8,7 +8,7 @@ Build a single-page Next.js (App Router, static export) landing website for a de
 
 - **App name:** galdr (lowercase)
 - **Tagline:** "media incantations"
-- **GitHub:** https://github.com/Aaen-Studios/galdr
+- **GitHub:** https://github.com/aaen-studios/galdr
 - **Site repo:** `galdr-web`
 - **Concept:** The name "galdr" is Old Norse for "magical incantation." The app frames media conversion (video, audio, image via FFmpeg) as spellcasting — raw media in, enchanted media out.
 - **Aesthetic:** The app uses a strict monochrome terminal theme (black background, white/gray monospace text, Elder Futhark runes as decorative elements). The website should match this identity but lean into an **ancient grimoire / spellbook** interpretation rather than a strict terminal emulator.
@@ -308,7 +308,7 @@ export const metadata = {
 The mockup is wrapped in a `motion.div` with a slow ambient pulse. The bottom line `ᚲ casting web | ██████ 67%` uses Framer Motion `staggerChildren` — each character fades in sequentially on page load (only played once). The mockup uses `white-space: pre` and the monospace font stack. Keep it horizontally centered.
 
 - Below the mockup, a CTA button: `<motion.button whileHover={{ scale: 1.02 }}>ᚷ DOWNLOAD</motion.button>` — linking to `#download`
-- A secondary link: "VIEW ON GITHUB" — opening https://github.com/Aaen-Studios/galdr in a new tab
+- A secondary link: "VIEW ON GITHUB" — opening https://github.com/aaen-studios/galdr in a new tab
 - Faint horizontal rule at the bottom of the section, made of repeated `ᛟ` characters
 - The full runic alphabet line at top is hidden on mobile
 
@@ -415,7 +415,7 @@ Filter assets by filename to assign to OS cards:
   - `<motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>ᚷ DOWNLOAD</motion.button>` — linking to the asset's `browser_download_url`
   - File size in MB below
 - If no matching asset for an OS: disabled card with "Not available yet" in fg-dim, no button
-- If API fetch fails: fallback — centered paragraph linking to `https://github.com/Aaen-Studios/galdr/releases/latest`
+- If API fetch fails: fallback — centered paragraph linking to `https://github.com/aaen-studios/galdr/releases/latest`
 - Below cards, package manager hints:
   ```
   > winget install galdr        # Windows (coming soon)
@@ -433,7 +433,7 @@ Filter assets by filename to assign to OS cards:
   Built with Tauri, React, and Rust
   Licensed under MIT
 
-  github.com/Aaen-Studios/galdr
+  github.com/aaen-studios/galdr
   ```
 - GitHub link opens in new tab
 - `© 2026 Ellio. All rights reserved.` in fg-faint
@@ -497,7 +497,7 @@ A fixed-position square button in the bottom-right corner (offset 24px) that app
   "applicationCategory": "Multimedia",
   "description": "A desktop GUI wrapper around FFmpeg for converting and manipulating media files.",
   "url": "https://galdr.app",
-  "downloadUrl": "https://github.com/Aaen-Studios/galdr/releases/latest"
+  "downloadUrl": "https://github.com/aaen-studios/galdr/releases/latest"
 }
 ```
 

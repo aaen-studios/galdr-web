@@ -23,7 +23,7 @@ export async function getRelease(): Promise<Release | null> {
     }
 
     const res = await fetch(
-      "https://api.github.com/repos/ellipog/galdr/releases/latest",
+      "https://api.github.com/repos/aaen-studios/galdr/releases/latest",
       { headers, next: { revalidate: 3600 } }
     );
     if (!res.ok) {
@@ -48,7 +48,7 @@ export async function getAllReleases(): Promise<Release[]> {
     }
 
     const res = await fetch(
-      "https://api.github.com/repos/ellipog/galdr/releases?per_page=5",
+      "https://api.github.com/repos/aaen-studios/galdr/releases?per_page=5",
       { headers, next: { revalidate: 3600 } }
     );
     if (!res.ok) {
@@ -66,7 +66,7 @@ export async function getAllReleases(): Promise<Release[]> {
 export async function getReleasesPage(page: number): Promise<Release[]> {
   try {
     const res = await fetch(
-      `https://api.github.com/repos/ellipog/galdr/releases?per_page=5&page=${page}`,
+      `https://api.github.com/repos/aaen-studios/galdr/releases?per_page=5&page=${page}`,
       { headers: { Accept: "application/vnd.github.v3+json" } }
     );
     if (!res.ok) {

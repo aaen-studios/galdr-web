@@ -1,0 +1,53 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: var(--border);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rune {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--accent-dim);
+  margin-bottom: 8px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--fg);
+  cursor: default;
+}
+
+.desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--fg-dim);
+  margin-bottom: 12px;
+  flex: 1;
+}
+
+.incantation {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fg-faint);
+  padding-top: 12px;
+  border-top: 1px solid var(--fg-faint);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

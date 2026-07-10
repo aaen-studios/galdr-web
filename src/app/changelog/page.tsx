@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
-import StickyNav from "@/components/StickyNav";
-import ChangelogSection from "@/components/ChangelogSection";
-import FooterSection from "@/components/FooterSection";
-import BackToTop from "@/components/BackToTop";
+import ParticleField from "@/components/grimoire/ParticleField";
+import ChangelogSection from "@/components/changelog/ChangelogSection";
+import BackToTop from "@/components/layout/BackToTop";
 import { getAllReleases } from "@/lib/github";
 
 export const metadata: Metadata = {
-  title: "Changelog — galdr",
+  title: "The Annals — galdr changelog",
   description: "Release history and changelog for galdr — media incantations.",
   openGraph: {
-    title: "Changelog — galdr",
+    title: "The Annals — galdr changelog",
     description: "Release history and changelog for galdr — media incantations.",
   },
   twitter: {
-    title: "Changelog — galdr",
+    title: "The Annals — galdr changelog",
     description: "Release history and changelog for galdr — media incantations.",
   },
 };
@@ -23,10 +22,9 @@ export default async function ChangelogPage() {
 
   return (
     <>
-      <StickyNav />
+      <ParticleField />
       <main id="main">
         <ChangelogSection initialReleases={initialReleases} />
-        <FooterSection />
       </main>
       <BackToTop />
     </>

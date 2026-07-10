@@ -1,0 +1,15 @@
+.card {
+  background: var(--bg-card);
+  border: var(--border);
+  padding: 24px;
+}
+
+.terminal {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.terminal > p {
+  margin-bottom: 0.5em;
+}

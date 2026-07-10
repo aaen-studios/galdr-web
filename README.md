@@ -73,4 +73,4 @@ For GitHub Pages, add a workflow:
 
 ## Related
 
-- [galdr desktop app](https://github.com/Aaen-Studios/galdr) — the app this site is for
+- [galdr desktop app](https://github.com/aaen-studios/galdr) — the app this site is for

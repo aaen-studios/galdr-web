@@ -1,0 +1,179 @@
+.version {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.versionLabel {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fg-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.versionTag {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-dim);
+  padding: 2px 10px;
+  border: 1px solid var(--accent-dim);
+}
+
+/* ── Download cards ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 16px;
+  background: var(--bg-card);
+  border: var(--border);
+  gap: 8px;
+}
+
+.disabled {
+  opacity: 0.4;
+}
+
+.cardRune {
+  font-family: var(--font-mono);
+  font-size: 1.75rem;
+  color: var(--accent-dim);
+}
+
+.cardOs {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.cardFile {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--fg-dim);
+  word-break: break-all;
+  margin-bottom: 8px;
+}
+
+.cardSize {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--fg-faint);
+}
+
+.cardEmpty {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fg-faint);
+  font-style: italic;
+}
+
+/* ── Package manager hints ── */
+.pm {
+  background: var(--bg-surface);
+  border: var(--border);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.pmLine {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--fg-faint);
+  margin-bottom: 4px;
+}
+
+.pmLine:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Mini changelog ── */
+.changelog {
+  border: var(--border);
+  background: var(--bg-surface);
+}
+
+.changelogSummary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  color: var(--fg);
+}
+
+.changelogSummary:hover {
+  color: var(--accent);
+}
+
+.changelogRune {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-dim);
+}
+
+.changelogBody {
+  padding: 0 16px 16px;
+}
+
+.changelogText {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--fg-dim);
+  white-space: pre-wrap;
+  margin-bottom: 12px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.changelogLink {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-dim);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.changelogLink:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* ── Fallback (no assets) ── */
+.fallback {
+  text-align: center;
+  padding: 32px 0;
+}
+
+.fallbackText {
+  font-size: 0.9375rem;
+  color: var(--fg-dim);
+  margin-bottom: 24px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
