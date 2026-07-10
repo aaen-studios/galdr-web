@@ -82,9 +82,11 @@ export async function getReleasesPage(page: number): Promise<Release[]> {
 
 export function matchAsset(
   assets: Asset[],
-  patterns: string[]
+  patterns: string[],
+  exclude: string[] = []
 ): Asset | undefined {
   return assets.find((a) =>
-    patterns.some((p) => a.name.toLowerCase().includes(p))
+    patterns.some((p) => a.name.toLowerCase().includes(p)) &&
+    !exclude.some((e) => a.name.toLowerCase().includes(e))
   );
 }

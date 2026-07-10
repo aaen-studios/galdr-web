@@ -21,7 +21,7 @@ export default function DownloadSection({ release }: Props) {
       rune: "ᚹ",
       asset: release
         ? (() => {
-          const a = matchAsset(release.assets, [".msi"]);
+          const a = matchAsset(release.assets, [".exe"], [".zip"]);
           return a
             ? { name: a.name, url: a.browser_download_url, size: a.size }
             : null;
