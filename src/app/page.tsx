@@ -1,5 +1,4 @@
 import CoverPage from "@/components/grimoire/CoverPage";
-import ScrollBackground from "@/components/grimoire/ScrollBackground";
 import AboutSection from "@/components/sections/AboutSection";
 import FeaturesSection from "@/components/sections/FeaturesSection";
 import ForgeSection from "@/components/sections/ForgeSection";
@@ -10,7 +9,7 @@ import DownloadSection from "@/components/sections/DownloadSection";
 import FooterSection from "@/components/sections/FooterSection";
 import StickyNav from "@/components/layout/StickyNav";
 import BackToTop from "@/components/layout/BackToTop";
-import ParticleField from "@/components/grimoire/ParticleField";
+import GaldrCanvasLoader from "@/components/webgl/GaldrCanvasLoader";
 import { getRelease } from "@/lib/github";
 
 export default async function Home() {
@@ -19,10 +18,11 @@ export default async function Home() {
 
   return (
     <>
-      <ScrollBackground />
-      <ParticleField />
+      {/* WebGL shader layer (fixed, behind everything) */}
+      <GaldrCanvasLoader />
+
       <StickyNav />
-      <main id="main">
+      <main id="main" style={{ position: "relative", zIndex: 1 }}>
         <CoverPage version={version} />
         <AboutSection />
         <FeaturesSection />

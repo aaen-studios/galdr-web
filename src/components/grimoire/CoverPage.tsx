@@ -5,7 +5,6 @@ import { useState, useEffect, type ReactNode } from "react";
 import ScrambleText from "@/components/ui/ScrambleText";
 import Button from "@/components/ui/Button";
 import OrnamentalDivider from "./OrnamentalDivider";
-import ConjuringCircle from "./ConjuringCircle";
 import styles from "./CoverPage.module.css";
 
 const RUNIC_ALPHABET = "ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ ᛃ ᛇ ᛈ ᛉ ᛊ ᛏ ᛒ ᛖ ᛗ ᛚ ᛝ ᛟ ᛞ";
@@ -68,7 +67,7 @@ export default function CoverPage({ version }: Props) {
   // Static (reduced motion) render
   if (reduced) {
     return (
-      <section className={styles.cover}>
+      <section className={styles.cover} data-section="cover">
         <p className={styles.runicLine} aria-hidden="true">
           {RUNIC_ALPHABET}
         </p>
@@ -77,7 +76,10 @@ export default function CoverPage({ version }: Props) {
           <h1 className={styles.heading}>galdr</h1>
           <p className={styles.tagline}>media incantations</p>
 
-          <ConjuringCircle />
+          {/* Spacer reserves the slot the WebGL conjuring circle fills */}
+          <div className={styles.circleSlot}>
+            <div className={styles.circleSpacer} aria-hidden="true" />
+          </div>
 
           {actions(githubLink)}
         </div>
@@ -89,7 +91,7 @@ export default function CoverPage({ version }: Props) {
   }
 
   return (
-    <section className={styles.cover}>
+    <section className={styles.cover} data-section="cover">
       <motion.p
         className={styles.runicLine}
         aria-hidden="true"
@@ -118,7 +120,8 @@ export default function CoverPage({ version }: Props) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1.8, duration: 0.9, ease: EASE }}
         >
-          <ConjuringCircle />
+          {/* Spacer reserves the slot the WebGL conjuring circle fills */}
+          <div className={styles.circleSpacer} aria-hidden="true" />
         </motion.div>
 
         <motion.div

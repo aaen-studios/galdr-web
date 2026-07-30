@@ -41,6 +41,7 @@ export default function Chapter({
     <motion.section
       id={id}
       ref={ref}
+      data-section={id}
       className={`${styles.chapter} ${major ? styles.major : ""} ${className}`}
       initial={reduced ? undefined : { opacity: 0, y: 12 }}
       whileInView={reduced ? undefined : { opacity: 1, y: 0 }}

@@ -58,6 +58,13 @@
   margin-bottom: 40px;
 }
 
+/* Transparent spacer that reserves the slot the fixed WebGL conjuring
+   circle visually occupies. Keeps the cover's vertical rhythm intact. */
+.circleSpacer {
+  width: clamp(220px, 42vw, 340px);
+  height: clamp(220px, 42vw, 340px);
+}
+
 /* ── Actions ── */
 .actions {
   display: flex;

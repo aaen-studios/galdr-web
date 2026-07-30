@@ -55,7 +55,9 @@ body {
 }
 
 /* ---------- Parchment grain overlay ---------- */
-body::before {
+/* Disabled on pages where the WebGL post-FX pipeline draws its own grain
+   (GaldrCanvas adds .webgl-active to <html> on successful init). */
+body:not(.webgl-active)::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -69,7 +71,7 @@ body::before {
 }
 
 /* ---------- Vignette ---------- */
-body::after {
+body:not(.webgl-active)::after {
   content: "";
   position: fixed;
   inset: 0;
