@@ -1,218 +1,660 @@
-/* ========================================
-   Grimoire Reborn — Design Tokens & Reset
-   ======================================== */
-
+/* ── Grimoire design system ─────────────────────── */
 :root {
-  /* Colors — warm dark, parchment, gold */
-  --bg: #0a0806;
-  --bg-surface: #141110;
-  --bg-card: #1a1614;
-  --fg: #e8e0d4;
-  --fg-dim: #8a7e72;
-  --fg-faint: #3a342e;
-  --accent: #c9a84c;
-  --accent-dim: #8a7030;
-  --crimson: #8b1a1a;
-
-  /* Typography — set by next/font in layout.tsx */
-  --font-heading: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
-  --font-body: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
-  --font-mono: var(--font-jetbrains), "JetBrains Mono", "Courier New", monospace;
-
-  /* Spacing & layout */
-  --base-unit: 4px;
-  --content-max: 800px;
-  --border: 1px solid #2a2218;
-
-  /* Transitions */
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --vellum: #f4ede0;
+  --vellum-shade: #e9dfc8;
+  --ink: #1b1512;
+  --oxblood: #7a2e1f;
+  --faded-iron: #8c7b69;
 }
 
-/* ---------- Reset ---------- */
-*,
-*::before,
-*::after {
+/* font vars --font-cormorant / --font-source-serif / --font-plex-mono
+   are injected by next/font/google on <html> in layout.tsx */
+
+* {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
 }
 
 body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-body);
+  margin: 0;
+  background: var(--vellum);
+  color: var(--ink);
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+/* aged-paper grain + soft vignette */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .36 0 0 0 0 .29 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 160px;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 91;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 38%, transparent 52%, rgba(27, 21, 18, 0.14) 100%);
+}
+
+::selection {
+  background: var(--oxblood);
+  color: var(--vellum);
+}
+
+.mono {
+  font-family: var(--font-plex-mono), monospace;
   font-weight: 400;
-  line-height: 1.7;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---------- Parchment grain overlay ---------- */
-/* Disabled on pages where the WebGL post-FX pipeline draws its own grain
-   (GaldrCanvas adds .webgl-active to <html> on successful init). */
-body:not(.webgl-active)::before {
+/* ── folio frame ─────────────────────────────── */
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--oxblood);
+  font-size: 13px;
+  letter-spacing: 0.5em;
+  margin: 96px 0;
+  user-select: none;
+}
+
+.divider::before,
+.divider::after {
   content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: overlay;
+  flex: 1;
+  height: 1px;
+  background: var(--faded-iron);
+  opacity: 0.55;
 }
 
-/* ---------- Vignette ---------- */
-body:not(.webgl-active)::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
-  pointer-events: none;
-  z-index: 9998;
-}
-
-/* ---------- Typography ---------- */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  line-height: 1.3;
+/* ── nav ─────────────────────────────────────── */
+nav.primary {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  padding: 18px 0;
+  background: var(--vellum);
+  border-bottom: 1px solid var(--faded-iron);
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
-h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
-h3 { font-size: clamp(1.125rem, 2vw, 1.5rem); }
-
-p {
-  margin-bottom: 1em;
-}
-
-/* ---------- Links ---------- */
-a {
-  color: var(--fg);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-color: var(--fg-faint);
-  transition: color var(--ease-out) 0.25s, text-decoration-color var(--ease-out) 0.25s;
-}
-
-a:hover {
-  color: var(--accent);
-  text-decoration-color: var(--accent-dim);
-}
-
-a:focus-visible {
-  outline: 1px solid var(--accent);
-  outline-offset: 3px;
-}
-
-/* ---------- Buttons ---------- */
-button {
-  font-family: var(--font-body);
-  cursor: pointer;
-  border: none;
-  background: none;
-  color: inherit;
-}
-
-button:focus-visible {
-  outline: 1px solid var(--accent);
-  outline-offset: 3px;
-}
-
-/* ---------- Selection ---------- */
-::selection {
-  background: var(--accent-dim);
-  color: var(--bg);
-}
-
-/* ---------- Code / terminal blocks ---------- */
-code, pre, .terminal {
-  font-family: var(--font-mono);
-  font-size: 0.875em;
-}
-
-pre {
-  background: var(--bg-surface);
-  border: var(--border);
-  padding: 16px;
-  overflow-x: auto;
-  line-height: 1.6;
-}
-
-/* ---------- Blockquote ---------- */
-blockquote {
-  border-left: 2px solid var(--accent-dim);
-  padding-left: 16px;
-  margin-left: 0;
-  color: var(--fg-dim);
-  font-style: italic;
-}
-
-/* ---------- Utility classes ---------- */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.skip-link {
-  position: absolute;
-  top: -100%;
-  left: 8px;
-  background: var(--accent);
-  color: var(--bg);
-  padding: 8px 16px;
-  z-index: 10000;
+nav.primary a {
+  color: var(--ink);
   text-decoration: none;
-  font-size: 14px;
-  font-family: var(--font-body);
-  transition: top 0.2s var(--ease-out);
+  opacity: 0.75;
+  transition: color 0.18s ease, opacity 0.18s ease;
 }
 
-.skip-link:focus {
-  top: 8px;
-  outline: none;
+nav.primary a:hover {
+  color: var(--oxblood);
+  opacity: 1;
 }
 
-/* ---------- Reduced motion ---------- */
+/* ── title page (hero) ───────────────────────── */
+header.title-page {
+  min-height: 92vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding-top: 60px;
+  position: relative;
+}
+
+.kicker {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.3em;
+  color: var(--faded-iron);
+  text-transform: uppercase;
+}
+
+h1.wordmark {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 700;
+  font-size: clamp(64px, 9vw, 112px);
+  line-height: 0.95;
+  margin: 22px 0 8px;
+  letter-spacing: 0.01em;
+}
+
+h1.wordmark em {
+  font-style: italic;
+  color: var(--oxblood);
+}
+
+.sub {
+  max-width: 34ch;
+  margin: 26px auto 0;
+  font-size: 19px;
+  color: #3a322c;
+  text-wrap: balance;
+}
+
+/* etymological footnote, as a grimoire would give one */
+.gloss {
+  max-width: 40ch;
+  margin: 40px auto 0;
+  font-size: 15.5px;
+  color: #4a423b;
+  text-align: center;
+}
+
+.gloss dt {
+  font-family: var(--font-cormorant), serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 19px;
+  margin-bottom: 4px;
+}
+
+.gloss dd {
+  margin: 0;
+  color: var(--faded-iron);
+  font-size: 13.5px;
+}
+
+.engraved-rule {
+  width: 120px;
+  margin: 40px auto 0;
+  border-top: 1px solid var(--oxblood);
+  position: relative;
+}
+
+.engraved-rule::after {
+  content: "✦";
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  transform: translateX(-50%);
+  background: var(--vellum);
+  padding: 0 10px;
+  color: var(--oxblood);
+  font-size: 13px;
+}
+
+/* capitulum — table of folios, dotted leaders */
+.capitula {
+  max-width: 34ch;
+  margin: 46px auto 0;
+  text-align: left;
+}
+
+.capitula h2 {
+  font-family: var(--font-plex-mono), monospace;
+  font-weight: 400;
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  color: var(--faded-iron);
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.capitula a {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 2px;
+  font-family: var(--font-cormorant), serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 17.5px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.18s ease, padding-left 0.18s ease;
+}
+
+.capitula a::before {
+  content: "";
+  flex: 1;
+  border-bottom: 1px dotted var(--faded-iron);
+  transform: translateY(-5px);
+}
+
+.capitula a i {
+  font-style: normal;
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--oxblood);
+  flex: none;
+}
+
+.capitula a:hover {
+  color: var(--oxblood);
+  padding-left: 6px;
+}
+
+.seal {
+  display: inline-block;
+  margin-top: 42px;
+  padding: 14px 38px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.seal:hover {
+  background: var(--oxblood);
+  border-color: var(--oxblood);
+  color: var(--vellum);
+  box-shadow: 0 14px 30px -18px rgba(122, 46, 31, 0.7);
+}
+
+.colophon-note {
+  margin-top: 30px;
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 12px;
+  color: var(--faded-iron);
+  letter-spacing: 0.08em;
+}
+
+/* ── folio sections ──────────────────────────── */
+section {
+  position: relative;
+}
+
+.folio-head {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.folio-num {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 12px;
+  color: var(--oxblood);
+  letter-spacing: 0.3em;
+}
+
+h2.folio-title {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 600;
+  font-size: clamp(34px, 4.5vw, 48px);
+  margin: 10px 0 0;
+  line-height: 1.1;
+}
+
+.folio-latin {
+  font-family: var(--font-cormorant), serif;
+  font-style: italic;
+  color: var(--faded-iron);
+  font-size: 17px;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+/* drop cap + marginalia */
+.entry {
+  padding: 30px 0;
+  border-bottom: 1px solid var(--faded-iron);
+  position: relative;
+}
+
+.entry:last-child {
+  border-bottom: none;
+}
+
+.entry h3 {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0 0 10px;
+  text-wrap: balance;
+}
+
+.entry p {
+  margin: 0;
+  max-width: 58ch;
+}
+
+.dropcap::first-letter {
+  float: left;
+  font-family: var(--font-cormorant), serif;
+  font-weight: 700;
+  font-size: 4.2em;
+  line-height: 0.8;
+  padding: 6px 10px 0 0;
+  color: var(--oxblood);
+}
+
+.margin-note {
+  position: absolute;
+  left: -5.2rem;
+  top: 34px;
+  width: 4.2rem;
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 10.5px;
+  line-height: 1.55;
+  color: var(--faded-iron);
+  text-align: right;
+  letter-spacing: 0.04em;
+}
+
+.margin-note b {
+  display: block;
+  font-weight: 400;
+  color: var(--oxblood);
+  margin-bottom: 2px;
+}
+
+/* feature grid, two-up */
+.folios {
+  display: grid;
+  gap: 34px 64px;
+  margin-top: 12px;
+}
+
+@media (min-width: 760px) {
+  .folios.two {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ── download folio ──────────────────────────── */
+.downloads {
+  display: grid;
+  gap: 26px;
+  margin-top: 8px;
+}
+
+.dl-row {
+  border: 1px solid var(--ink);
+  padding: 20px 24px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--vellum-shade);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.dl-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -18px rgba(27, 21, 18, 0.5);
+  border-color: var(--oxblood);
+}
+
+.dl-row-dim {
+  opacity: 0.55;
+  background: transparent;
+}
+
+.dl-row-dim:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--ink);
+}
+
+.dl-os {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 600;
+  font-size: 22px;
+  flex: none;
+}
+
+.dl-file {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 11.5px;
+  color: var(--faded-iron);
+  letter-spacing: 0.04em;
+  display: block;
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dl-meta {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 12px;
+  color: var(--faded-iron);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  flex: none;
+}
+
+/* ── changelog index ─────────────────────────── */
+.release {
+  padding: 26px 0 8px;
+  border-bottom: 1px solid var(--faded-iron);
+}
+
+.release:last-child {
+  border-bottom: none;
+}
+
+.release-top {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+.rune {
+  color: var(--oxblood);
+  font-size: 15px;
+  letter-spacing: 0.2em;
+}
+
+.release-top time {
+  margin-left: auto;
+  color: var(--faded-iron);
+}
+
+.release h4 {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 8px 0 10px;
+}
+
+.earlier {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  color: var(--faded-iron);
+  margin-top: 26px;
+  line-height: 2.2;
+}
+
+/* ── rendered release bodies (markdown.tsx) ──── */
+.release .md-heading {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 600;
+  font-size: 17px;
+  margin: 18px 0 4px;
+}
+
+.release .md-paragraph {
+  max-width: 58ch;
+  margin-bottom: 12px;
+  color: #3a322c;
+}
+
+.release .md-list {
+  margin: 0 0 12px;
+  padding-left: 1.3em;
+  color: #3a322c;
+}
+
+.release .md-list li {
+  margin-bottom: 6px;
+}
+
+.md-bold {
+  font-weight: 600;
+}
+
+.md-inline-code,
+.md-link {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 0.85em;
+}
+
+.md-inline-code {
+  background: rgba(122, 46, 31, 0.08);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.md-link {
+  color: var(--oxblood);
+  text-underline-style: dotted;
+}
+
+.md-code-block {
+  background: rgba(27, 21, 18, 0.06);
+  border-left: 3px solid var(--faded-iron);
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 12px;
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+
+.load-more {
+  display: block;
+  width: 100%;
+  margin-top: 34px;
+  padding: 14px 38px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.load-more:hover:not(:disabled) {
+  background: var(--oxblood);
+  border-color: var(--oxblood);
+  color: var(--vellum);
+  box-shadow: 0 14px 30px -18px rgba(122, 46, 31, 0.7);
+}
+
+.load-more:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ── footer colophon ─────────────────────────── */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-bottom: 80px;
+}
+
+footer .colophon {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 12px;
+  color: var(--faded-iron);
+  letter-spacing: 0.06em;
+  line-height: 2.1;
+}
+
+footer .colophon a {
+  color: var(--oxblood);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--oxblood);
+}
+
+footer .colophon a:hover {
+  border-bottom-style: solid;
+}
+
+/* ── focus + motion ──────────────────────────── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--oxblood);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .reveal {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 768px) {
-  body {
-    font-size: 0.9375rem;
+/* quiet page-turn reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 700px) {
+  .margin-note {
+    position: static;
+    width: auto;
+    text-align: left;
+    margin-bottom: 12px;
+    font-size: 11.5px;
   }
 
-  h1 { font-size: clamp(1.75rem, 8vw, 2.5rem); }
-  h2 { font-size: clamp(1.25rem, 5vw, 1.5rem); }
-  h3 { font-size: clamp(1rem, 4vw, 1.125rem); }
+  nav.primary {
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .dl-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
 }

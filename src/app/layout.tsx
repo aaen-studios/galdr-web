@@ -1,45 +1,47 @@
-import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, JetBrains_Mono } from "next/font/google";
+import type { Metadata } from "next";
+import { Cormorant_Garamond, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
-/* ── Self-hosted fonts ── */
+/* ── Type ── */
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-cormorant",
   display: "swap",
+  variable: "--font-cormorant",
 });
 
-const jetbrains = JetBrains_Mono({
+const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-jetbrains",
   display: "swap",
+  variable: "--font-source-serif",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+  variable: "--font-plex-mono",
 });
 
 /* ── Meta ── */
-export const viewport: Viewport = {
-  themeColor: "#0a0806",
-};
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://galdr.app"),
-  title: "galdr — media incantations",
+  title: "galdr",
   description:
-    "A desktop GUI wrapper around FFmpeg for converting and manipulating video, audio, and image files. Terminal aesthetic. Runic theme.",
+    "A desktop GUI wrapper around FFmpeg for converting and manipulating video, audio, and image files.",
   openGraph: {
-    title: "galdr — media incantations",
+    title: "galdr",
     description:
-      "A desktop GUI wrapper around FFmpeg. Terminal aesthetic. Runic theme.",
+      "A desktop GUI wrapper around FFmpeg for converting and manipulating media files.",
     url: "https://galdr.app",
     siteName: "galdr",
   },
   twitter: {
     card: "summary",
-    title: "galdr — media incantations",
+    title: "galdr",
     description:
-      "A desktop GUI wrapper around FFmpeg. Terminal aesthetic. Runic theme.",
+      "A desktop GUI wrapper around FFmpeg for converting and manipulating media files.",
   },
   robots: {
     index: true,
@@ -66,22 +68,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${cormorant.variable} ${jetbrains.variable}`}
-    >
+    <html lang="en" className={`${cormorant.variable} ${sourceSerif.variable} ${plexMono.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>
-        <a href="#main" className="skip-link">
-          Skip to content
-        </a>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
