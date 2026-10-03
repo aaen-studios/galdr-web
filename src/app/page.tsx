@@ -270,7 +270,10 @@ export default async function Home() {
             ✦ ─── ✦
           </div>
           <p className="colophon">
-            galdr — set in Cormorant Garamond &amp; Source Serif · typeset for the web
+            galdr — set in Cormorant Garamond &amp; Source Serif · typeset for the web by{" "}
+            <a href="https://aaenz.no" target="_blank" rel="noopener noreferrer">
+              aaen studios
+            </a>
             <br />
             source on{" "}
             <a
